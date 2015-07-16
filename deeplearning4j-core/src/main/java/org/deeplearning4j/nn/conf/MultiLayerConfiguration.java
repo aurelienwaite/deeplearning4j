@@ -19,6 +19,7 @@
 package org.deeplearning4j.nn.conf;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.module.scala.DefaultScalaModule;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -106,6 +107,7 @@ public class MultiLayerConfiguration implements Serializable {
      */
     public String toJson() {
         ObjectMapper mapper = NeuralNetConfiguration.mapper();
+        mapper.registerModule(new DefaultScalaModule());
         try {
             return mapper.writeValueAsString(this);
         } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
@@ -120,6 +122,7 @@ public class MultiLayerConfiguration implements Serializable {
      */
     public static MultiLayerConfiguration fromJson(String json) {
         ObjectMapper mapper = NeuralNetConfiguration.mapper();
+        mapper.registerModule(new DefaultScalaModule());
         try {
             return mapper.readValue(json, MultiLayerConfiguration.class);
         } catch (IOException e) {

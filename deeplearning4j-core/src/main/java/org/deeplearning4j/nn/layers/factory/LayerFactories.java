@@ -44,7 +44,9 @@ public class LayerFactories {
      */
     public static LayerFactory getFactory(Layer layer) {
         Class<? extends Layer> clazz = layer.getClass();
-        if(clazz.equals(ConvolutionDownSampleLayer.class))
+        if(LayerFactory.class.isAssignableFrom(clazz))
+        	return (LayerFactory)layer;
+        else if(clazz.equals(ConvolutionDownSampleLayer.class))
             return new ConvolutionLayerFactory(clazz);
         else if(clazz.equals(LSTM.class))
             return new LSTMLayerFactory(LSTM.class);
@@ -75,7 +77,8 @@ public class LayerFactories {
             return org.deeplearning4j.nn.api.Layer.Type.RECURRENT;
         else if(layerFactory instanceof RecursiveAutoEncoderLayerFactory)
             return org.deeplearning4j.nn.api.Layer.Type.RECURSIVE;
-        else if(layerFactory instanceof DefaultLayerFactory || layerFactory instanceof PretrainLayerFactory)
+        else if(layerFactory instanceof DefaultLayerFactory || layerFactory instanceof PretrainLayerFactory 
+        		|| layerFactory instanceof Layer)
             return org.deeplearning4j.nn.api.Layer.Type.FEED_FORWARD;
 
         throw new IllegalArgumentException("Unknown layer type");

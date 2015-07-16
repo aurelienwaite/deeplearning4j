@@ -30,7 +30,7 @@ import org.deeplearning4j.optimize.api.IterationListener;
  *
  * @author Adam Gibson
  */
-public interface LayerFactory {
+public interface LayerFactory <E extends Layer>{
 
     /**
      *

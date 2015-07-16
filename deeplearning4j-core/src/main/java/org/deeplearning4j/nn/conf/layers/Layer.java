@@ -28,15 +28,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 /**
  * A neural network layer.
  */
-@JsonTypeInfo(use=Id.NAME, include=As.WRAPPER_OBJECT)
-@JsonSubTypes(value={
-        @JsonSubTypes.Type(value = AutoEncoder.class, name = "autoEncoder"),
-        @JsonSubTypes.Type(value = ConvolutionDownSampleLayer.class, name = "convolutionDownSample"),
-        @JsonSubTypes.Type(value = LSTM.class, name = "LSTM"),
-        @JsonSubTypes.Type(value = OutputLayer.class, name = "output"),
-        @JsonSubTypes.Type(value = RBM.class, name = "RBM"),
-        @JsonSubTypes.Type(value = RecursiveAutoEncoder.class, name = "recursiveAutoEncoder"),
-        })
+@JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=As.WRAPPER_OBJECT)
 public abstract class Layer implements Serializable {
 
     private static final long serialVersionUID = 492217000569721428L;

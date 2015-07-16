@@ -29,7 +29,7 @@
 		<logback.version>1.1.2</logback.version>
 		<netty.version>4.0.28.Final</netty.version>
 		<lombok.version>1.16.4</lombok.version>
-
+		<jackson.module.version>2.4.1</jackson.module.version>
 	</properties>
 
 	<dependencyManagement>
@@ -176,6 +176,11 @@
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
 			<artifactId>jackson-dataformat-yaml</artifactId>
 			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.module</groupId>
+			<artifactId>jackson-module-scala_2.11</artifactId>
+			<version>${jackson.module.version}</version>
 		</dependency>
 	</dependencies>
 </project>
