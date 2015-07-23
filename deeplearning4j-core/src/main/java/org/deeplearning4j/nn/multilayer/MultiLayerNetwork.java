@@ -1039,7 +1039,6 @@ public class MultiLayerNetwork implements Serializable, Classifier {
     protected void doBackWard(INDArray input,INDArray labels) {
         setInput(input);
         this.labels = labels;
-        Gradient nextGradients = new DefaultGradient();
 
         if(!(getOutputLayer() instanceof  OutputLayer)) {
             log.warn("Warning: final layer isn't output layer. You can ignore this message if you just intend on using a a deep neural network with no output layer.");
@@ -1083,6 +1082,7 @@ public class MultiLayerNetwork implements Serializable, Classifier {
                 delta.muli(activationDeriv);
             }
 
+            Gradient nextGradients = new DefaultGradient();
             nextGradients.gradientForVariable().put(DefaultParamInitializer.WEIGHT_KEY, delta.mmul(layerInput).transpose());
             nextGradients.gradientForVariable().put(DefaultParamInitializer.BIAS_KEY, delta.transpose());
 

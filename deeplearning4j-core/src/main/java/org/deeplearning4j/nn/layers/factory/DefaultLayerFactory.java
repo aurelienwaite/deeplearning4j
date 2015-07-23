@@ -32,7 +32,7 @@ import java.util.*;
  * Default layer factory: create a bias and a weight matrix
  * @author Adam Gibson
  */
-public class DefaultLayerFactory implements LayerFactory {
+public class DefaultLayerFactory implements LayerFactory<Layer> {
    
     protected org.deeplearning4j.nn.conf.layers.Layer layerConfig;
 
